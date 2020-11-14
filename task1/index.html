@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./iconfont.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: RGB(250,250,250);
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            flex-wrap: wrap;
+            background-color: white;
+            height: 450px;
+            width: 350px;
+            border: 0.5px solid darkgray;
+            border-radius: 10px;
+        }
+
+        .pic {
+            position: relative;
+            border-radius: 49%;
+            top: 5%;
+        }
+
+        h1 {
+            position: relative;
+            top: 8%;
+        }
+
+        .username,
+        .password {
+            padding: 10px 30px;
+            font-size: 16px;
+            color: #666;
+        }
+
+
+        .username-input,
+        .password-input {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            width: 80%;
+            position: relative;
+            top: 30px;
+            height: 30px;
+            transition: all 0.30s ease-in-out;
+            padding-left: 25px;
+        }
+
+        .yonghu {
+            position: relative;
+            left: -40%;
+            top: 12%;
+            z-index: 1;
+        }
+
+        .mima {
+            position: relative;
+            left: -40%;
+            top: 12%;
+            z-index: 1;
+        }
+
+        .login {
+            position: absolute;
+            top: 73%;
+            width: 300px;
+            height: 30px;
+            border: none;
+            outline: none;
+            color: white;
+            border-radius: 5px;
+            background-color: RGB(29, 144, 255);
+            cursor: pointer;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+
+            box-shadow: 0 0 5px #428bca;
+            /* padding: 3px 0 3px 3px; */
+            /* margin: 5px 1px 3px 0; */
+            border: #428bca 1px solid;
+        }
+
+        .login:hover,
+        .ok:hover {
+            background-color: #3071A9;
+        }
+        .cancel:hover{
+            background-color: RGB(29, 144, 255);
+            color: white;
+        }
+
+        .cover {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            display: none;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            background: rgba(51, 51, 51, 0.5);
+        }
+
+        .coverBox {
+            width: 400px;
+            height: 250px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            border-radius: 10px;
+        }
+
+        .info {
+            position: relative;
+            top: 5px;
+            left: 20px;
+            font-size: 20px;
+        }
+
+        .x {
+            position: relative;
+            top: 5px;
+            left: 290px;
+            border: none;
+            outline: none;
+            background-color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .coverBox div {
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cancel,
+        .ok {
+            position: relative;
+            left: 200px;
+            margin-left: 10px;
+            margin-top: 10px;
+            width: 80px;
+            height: 25px;
+            border: none;
+            outline: none;
+            color: white;
+            border-radius: 5px;
+            background-color: RGB(29, 144, 255);
+            cursor: pointer;
+        }
+        .cancel{
+            background-color: white;
+            border: 1.5px solid RGB(29, 144, 255);
+            color: RGB(29, 144, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img class="pic" src="./Image 1.png" alt="">
+        <h1>登陆</h1>
+        <div class="username"></div>
+        <i class="iconfont yonghu">&#xe667;</i>
+        <input type="text" class="username-input" id="uinput" placeholder="请输入学号">
+
+        <div class="password"></div>
+        <i class="iconfont mima">&#xe7e2;</i>
+        <input type="password" id="pinput" class="password-input" placeholder="请输入密码">
+
+        <button class="login" id="login">login</button>
+    </div>
+
+    <div class="cover" id="cover">
+        <div class="coverBox">
+            <div><span class="info">个人信息</span><button class="x" id="x">X</button></div>
+            <hr>
+            <div>姓名:云家园</div>
+            <div id="number">学号:</div>
+            <div>性别:男</div>
+            <div>地址:江西省抚州市</div>
+            <div>手机号:18170415733</div>
+            <hr>
+            <div><button class="cancel" id="cancel">Cancel</button><button class="ok" id="ok">OK</button></div>
+        </div>
+    </div>
+
+
+
+    <script>
+        let cover = document.getElementById('cover')
+        let loginButton = document.getElementById('login')
+        let cancel = document.getElementById('cancel')
+        let ok = document.getElementById('ok')
+        let x = document.getElementById('x')
+
+
+        loginButton.onclick = function () {
+            let uinput = document.getElementById('uinput')
+            let pinput = document.getElementById('pinput')
+            let num = document.getElementById('number')
+            // if (uinput.nodeValue==null) {
+            //     alert("Please input username.")
+            // }else if(pinput.nodeValue==null){
+            //     alert("Please input passworld.")
+            // }else{
+                
+            // }
+            cover.style.display = "block"
+        
+            num.textContent = "学号:"+uinput.nodeValue
+        }
+        x.onclick = function () {
+            cover.style.display = "none"
+        }
+        cancel.onclick = function () {
+            cover.style.display = "none"
+        }
+        ok.onclick = function () {
+            cover.style.display = "none"
+        }
+
+    </script>
+</body>
+
+</html>
